@@ -268,6 +268,47 @@
       gap: 1rem;
     }
 
+    .hero-portrait-card {
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: 28px;
+      background: rgba(255, 255, 255, 0.05);
+    }
+
+    .hero-portrait-frame {
+      padding: 0.95rem;
+      background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.02)),
+        rgba(9, 18, 30, 0.55);
+    }
+
+    .hero-portrait {
+      width: 100%;
+      aspect-ratio: 4 / 5;
+      object-fit: cover;
+      object-position: center 18%;
+      border-radius: 22px;
+      background: rgba(255, 255, 255, 0.04);
+    }
+
+    .hero-portrait-meta {
+      padding: 0 1.2rem 1.25rem;
+    }
+
+    .hero-portrait-meta strong {
+      display: block;
+      margin-top: 0.2rem;
+      font-size: 1.08rem;
+      line-height: 1.4;
+    }
+
+    .hero-portrait-meta p {
+      margin: 0.5rem 0 0;
+      color: var(--muted);
+      line-height: 1.6;
+      font-size: 0.94rem;
+    }
+
     .hero-card {
       border: 1px solid var(--line);
       border-radius: 24px;
@@ -631,6 +672,18 @@
           </div>
 
           <aside class="hero-aside" aria-label="Summary cards">
+            <div class="hero-portrait-card">
+              <div class="hero-portrait-frame">
+                <img class="hero-portrait" src="assets/profile-photo.jpg" alt="Portrait of Chris Posadas">
+              </div>
+              <div class="hero-portrait-meta">
+                <span class="hero-card-label">Profile</span>
+                <strong>Public portfolio portrait.</strong>
+                <p>
+                  Added to give the site a stronger personal presence alongside the project and portfolio work.
+                </p>
+              </div>
+            </div>
             <div class="hero-card">
               <span class="hero-card-label">Current role</span>
               <strong>United States Marine Corps officer with an operations research focus.</strong>
@@ -799,11 +852,11 @@
             </div>
           </article>
           <article class="panel visual-card">
-            <img src="assets/statsr-cheatsheet.svg" alt="Stylized StatsRPackage code sample graphic">
+            <img src="assets/statsr-cheatsheet.svg" alt="StatsRPackage overview graphic">
             <div class="visual-copy">
-              <h3>Code-style sample</h3>
+              <h3>Package overview</h3>
               <p>
-                A visual built from the package workflow itself, showing the kind of inference helpers and cheat-sheet style usage the project was made to support.
+                A cleaner project graphic that summarizes the package around inference, testing, power analysis, and sample-size planning rather than mimicking a terminal screenshot.
               </p>
             </div>
           </article>
