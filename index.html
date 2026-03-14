@@ -427,10 +427,7 @@
       gap: 1rem;
     }
 
-    .visual-grid {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 1rem;
+    .project-grid-secondary {
       margin-top: 1rem;
     }
 
@@ -604,7 +601,6 @@
       .hero-grid,
       .hero-summary-grid,
       .project-grid,
-      .visual-grid,
       .role-grid,
       .focus-grid,
       .contact-grid,
@@ -766,14 +762,14 @@
             <span class="project-badge">Featured repo</span>
             <h3>StatsRPackage</h3>
             <p>
-              An R package focused on introductory and applied statistical inference.
-              It emphasizes reusable functions, mathematical correctness, regression-tested behavior, and documentation that supports coursework and practical analysis.
+              StatsPackage is a focused R package for introductory statistical inference, designed to make common analyses fast, consistent, and easy to interpret.
+              It brings confidence intervals, hypothesis tests, power calculations, sample-size planning, chi-square methods, and descriptive shape measures into one clean toolkit, so users do not need a different workflow for every topic.
             </p>
             <div class="mini-list">
               <span class="mini-list-label">Highlights</span>
-              <span>Confidence intervals, hypothesis tests, power analysis, and sample-size planning</span>
-              <span>CI, linting, coverage, pkgdown docs, and versioned release workflow</span>
-              <span>Built to be reusable beyond a single homework or exam</span>
+              <span>Readable output and structured results for both study use and practical analysis</span>
+              <span>Consistent workflows across inference, testing, power, sample size, and chi-square methods</span>
+              <span>CI, pkgdown docs, linting, coverage, and versioned release workflow</span>
             </div>
             <div class="project-actions">
               <a
@@ -795,6 +791,18 @@
             </div>
           </article>
 
+          <article class="panel visual-card">
+            <img src="assets/statsr-workflow-v4.svg" alt="StatsRPackage workflow sample graphic">
+            <div class="visual-copy">
+              <h3>Workflow sample</h3>
+              <p>
+                A code-style project visual showing the `ci_mu` workflow with the function signature and example usage separated clearly enough to stay readable at portfolio size.
+              </p>
+            </div>
+          </article>
+        </div>
+
+        <div class="project-grid project-grid-secondary">
           <article class="panel project-card">
             <span class="project-badge">Portfolio repo</span>
             <h3>GitHub Portfolio Site</h3>
@@ -850,27 +858,6 @@
               >
                 Open GitLab repo
               </a>
-            </div>
-          </article>
-        </div>
-
-        <div class="visual-grid" aria-label="Project visuals">
-          <article class="panel visual-card">
-            <img src="assets/statsrpackage-card.png" alt="StatsRPackage repository preview card">
-            <div class="visual-copy">
-              <h3>Repository preview</h3>
-              <p>
-                A public-facing project image that reinforces the package as a real, published repository with its own documentation and release surface.
-              </p>
-            </div>
-          </article>
-          <article class="panel visual-card">
-            <img src="assets/statsr-workflow-v4.svg" alt="StatsRPackage workflow sample graphic">
-            <div class="visual-copy">
-              <h3>Workflow sample</h3>
-              <p>
-                A code-style project visual showing the `ci_mu` workflow more clearly, with the function signature and usage examples separated enough to stay readable at portfolio size.
-              </p>
             </div>
           </article>
         </div>
