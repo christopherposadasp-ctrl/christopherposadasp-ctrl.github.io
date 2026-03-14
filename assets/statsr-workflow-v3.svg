@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" role="img" aria-labelledby="title desc">
+  <title id="title">StatsRPackage workflow sample</title>
+  <desc id="desc">A clean code-style graphic showing the ci_mu function signature and sample usage without overlapping text.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0a1521"/>
+      <stop offset="100%" stop-color="#12283d"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#d9a441"/>
+      <stop offset="100%" stop-color="#7cc6b8"/>
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="18" stdDeviation="24" flood-color="#000000" flood-opacity="0.34"/>
+    </filter>
+  </defs>
+
+  <rect width="1600" height="900" fill="url(#bg)"/>
+  <circle cx="1350" cy="120" r="190" fill="#d9a441" opacity="0.10"/>
+  <circle cx="180" cy="760" r="250" fill="#7cc6b8" opacity="0.08"/>
+
+  <g filter="url(#shadow)">
+    <rect x="86" y="82" width="1428" height="736" rx="32" fill="#111d2c" stroke="#28415b" stroke-width="2"/>
+    <rect x="86" y="82" width="1428" height="58" rx="32" fill="#14243a"/>
+    <circle cx="134" cy="112" r="10" fill="#f06c5b"/>
+    <circle cx="168" cy="112" r="10" fill="#f0be4d"/>
+    <circle cx="202" cy="112" r="10" fill="#63c655"/>
+    <rect x="260" y="98" width="330" height="28" rx="14" fill="#1b3550"/>
+    <text x="292" y="118" fill="#9fb2c3" font-size="20" font-family="Arial, Helvetica, sans-serif">StatsRPackage / workflow sample</text>
+  </g>
+
+  <rect x="122" y="182" width="390" height="534" rx="24" fill="#14283a" stroke="#284d6d" stroke-width="2"/>
+  <rect x="548" y="182" width="918" height="534" rx="24" fill="#0f1a29" stroke="#284d6d" stroke-width="2"/>
+  <rect x="122" y="748" width="1344" height="44" rx="14" fill="#14283a" stroke="#284d6d" stroke-width="2"/>
+
+  <text x="156" y="236" fill="#ffca63" font-size="26" font-family="Arial, Helvetica, sans-serif" font-weight="700">Core Function</text>
+  <text x="156" y="300" fill="#8fd2cd" font-size="34" font-family="Consolas, Monaco, monospace" font-weight="700">ci_mu(</text>
+  <text x="194" y="352" fill="#f3efe8" font-size="28" font-family="Consolas, Monaco, monospace">xbar, n,</text>
+  <text x="194" y="404" fill="#f3efe8" font-size="28" font-family="Consolas, Monaco, monospace">s = NULL,</text>
+  <text x="194" y="456" fill="#f3efe8" font-size="28" font-family="Consolas, Monaco, monospace">sigma = NULL,</text>
+  <text x="194" y="508" fill="#f3efe8" font-size="28" font-family="Consolas, Monaco, monospace">conf.level = 0.95,</text>
+  <text x="194" y="560" fill="#f3efe8" font-size="28" font-family="Consolas, Monaco, monospace">side = c("two.sided",</text>
+  <text x="234" y="598" fill="#f3efe8" font-size="28" font-family="Consolas, Monaco, monospace">"lower", "upper"),</text>
+  <text x="194" y="650" fill="#f3efe8" font-size="28" font-family="Consolas, Monaco, monospace">method = c("welch", "pooled", "z")</text>
+  <text x="156" y="698" fill="#8fd2cd" font-size="34" font-family="Consolas, Monaco, monospace" font-weight="700">)</text>
+
+  <text x="586" y="236" fill="#ffca63" font-size="26" font-family="Arial, Helvetica, sans-serif" font-weight="700">Example Usage</text>
+
+  <text x="586" y="314" fill="#8fd2cd" font-size="28" font-family="Consolas, Monaco, monospace"># One-sample z CI</text>
+  <text x="586" y="366" fill="#f3efe8" font-size="28" font-family="Consolas, Monaco, monospace">ci_mu(xbar = 2.25, n = 36, sigma = 1.5)</text>
+
+  <text x="586" y="446" fill="#8fd2cd" font-size="28" font-family="Consolas, Monaco, monospace"># One-sample t CI</text>
+  <text x="586" y="498" fill="#f3efe8" font-size="28" font-family="Consolas, Monaco, monospace">ci_mu(xbar = 12.4, n = 15, s = 3.2)</text>
+
+  <text x="586" y="578" fill="#8fd2cd" font-size="28" font-family="Consolas, Monaco, monospace"># Two-sample Welch CI</text>
+  <text x="586" y="630" fill="#f3efe8" font-size="28" font-family="Consolas, Monaco, monospace">ci_mu(xbar = c(65, 63), n = c(40, 38),</text>
+  <text x="626" y="668" fill="#f3efe8" font-size="28" font-family="Consolas, Monaco, monospace">s = c(3.0, 2.5), method = "welch")</text>
+
+  <rect x="154" y="762" width="430" height="16" rx="8" fill="url(#accent)" opacity="0.9"/>
+  <text x="612" y="778" fill="#d0d9e2" font-size="20" font-family="Arial, Helvetica, sans-serif">
+    Reusable inference helpers built for correctness, documentation, and repeated use.
+  </text>
+</svg>
