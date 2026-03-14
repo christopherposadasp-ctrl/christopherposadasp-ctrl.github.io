@@ -1,521 +1,914 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Chris Posadas — Marine Officer, Operations Research Analyst, and Applied Statistics Builder." />
-  <title>Chris Posadas</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta
+    name="description"
+    content="Chris Posadas - Marine Corps officer, infantry officer, operations research analyst, and builder of practical tools in Python, R, and Excel."
+  >
+  <meta property="og:title" content="Chris Posadas | GitHub Portfolio">
+  <meta
+    property="og:description"
+    content="A public portfolio focused on decision support, statistical tooling, automation, and reusable workflows."
+  >
+  <meta property="og:type" content="website">
+  <title>Chris Posadas | GitHub Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Instrument+Sans:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet"
+  >
+  <script>
+    document.documentElement.classList.add("js");
+  </script>
   <style>
-    /* ── Reset & base ── */
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
     :root {
-      --navy:   #0b1f3a;
-      --navy2:  #122a4e;
-      --gold:   #c8963e;
-      --gold-lt:#e8b35a;
-      --white:  #ffffff;
-      --offwhite: #f5f7fa;
-      --text:   #1e2d40;
-      --muted:  #5a6b7e;
-      --border: #d6dde6;
-      --radius: 10px;
-      --shadow: 0 4px 24px rgba(11,31,58,.12);
-      --transition: .22s ease;
+      --bg: #0d1b2a;
+      --bg-deep: #08111b;
+      --panel: rgba(13, 27, 42, 0.74);
+      --panel-strong: rgba(7, 17, 28, 0.9);
+      --paper: #f4efe6;
+      --paper-soft: #ddd3c2;
+      --line: rgba(255, 255, 255, 0.12);
+      --line-strong: rgba(255, 255, 255, 0.22);
+      --accent: #d9a441;
+      --accent-soft: #f3c467;
+      --signal: #7cc6b8;
+      --text: #f7f2ea;
+      --muted: #c9c1b4;
+      --ink: #15263a;
+      --shadow: 0 24px 70px rgba(0, 0, 0, 0.34);
+      --radius: 26px;
+      --max: 1180px;
     }
 
-    html { scroll-behavior: smooth; }
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
 
     body {
-      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
-      background: var(--offwhite);
+      margin: 0;
+      font-family: "Instrument Sans", Arial, sans-serif;
       color: var(--text);
-      line-height: 1.7;
-      font-size: 1rem;
+      background:
+        radial-gradient(circle at 15% 18%, rgba(124, 198, 184, 0.16), transparent 24%),
+        radial-gradient(circle at 82% 22%, rgba(217, 164, 65, 0.18), transparent 26%),
+        linear-gradient(180deg, #102133 0%, #09131e 52%, #060d16 100%);
+      min-height: 100vh;
     }
 
-    a { color: var(--gold); text-decoration: none; transition: color var(--transition); }
-    a:hover { color: var(--gold-lt); }
-    a:focus-visible { outline: 3px solid var(--gold); outline-offset: 3px; border-radius: 3px; }
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background:
+        linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+      background-size: 44px 44px;
+      mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.7), transparent 90%);
+      pointer-events: none;
+      z-index: -1;
+    }
 
-    /* ── Nav ── */
-    nav {
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .shell {
+      width: min(calc(100% - 2rem), var(--max));
+      margin: 0 auto;
+    }
+
+    .topbar {
       position: sticky;
       top: 0;
-      z-index: 100;
-      background: var(--navy);
-      border-bottom: 2px solid var(--gold);
-      padding: .7rem 2rem;
+      z-index: 20;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(18px);
+      background: rgba(6, 13, 22, 0.72);
+    }
+
+    .topbar-inner {
+      width: min(calc(100% - 2rem), var(--max));
+      margin: 0 auto;
+      padding: 1rem 0;
       display: flex;
       align-items: center;
       justify-content: space-between;
       gap: 1rem;
     }
 
-    .nav-brand {
-      color: var(--white);
-      font-size: 1.05rem;
-      font-weight: 700;
-      letter-spacing: .04em;
-      white-space: nowrap;
+    .brand {
+      font-size: 0.92rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      font-weight: 800;
+      color: var(--paper);
     }
 
-    .nav-links {
+    .nav {
       display: flex;
-      gap: 1.6rem;
-      list-style: none;
       flex-wrap: wrap;
+      gap: 1rem;
+      font-size: 0.92rem;
+      color: var(--muted);
     }
 
-    .nav-links a {
-      color: #cbd8e8;
-      font-size: .9rem;
-      font-weight: 500;
-      letter-spacing: .03em;
-      transition: color var(--transition);
+    .nav a:hover,
+    .nav a:focus-visible,
+    .button:hover,
+    .button:focus-visible,
+    .project-link:hover,
+    .project-link:focus-visible,
+    .contact-card:hover,
+    .contact-card:focus-visible {
+      color: var(--paper);
+      outline: none;
     }
 
-    .nav-links a:hover { color: var(--gold-lt); }
+    .hero {
+      padding: 5.25rem 0 2.5rem;
+    }
 
-    /* ── Hero ── */
-    #hero {
-      background: linear-gradient(135deg, var(--navy) 0%, var(--navy2) 60%, #1a3a5c 100%);
-      color: var(--white);
-      padding: 7rem 2rem 6rem;
-      text-align: center;
+    .hero-panel {
       position: relative;
       overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: 34px;
+      padding: 2rem;
+      background:
+        linear-gradient(135deg, rgba(8, 17, 27, 0.94), rgba(18, 37, 57, 0.82)),
+        var(--panel);
+      box-shadow: var(--shadow);
     }
 
-    #hero::before {
-      content: '';
+    .hero-panel::after {
+      content: "";
       position: absolute;
-      inset: 0;
-      background: radial-gradient(ellipse at 50% 0%, rgba(200,150,62,.15) 0%, transparent 70%);
+      width: 360px;
+      height: 360px;
+      right: -130px;
+      top: -120px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(217, 164, 65, 0.24), transparent 68%);
       pointer-events: none;
     }
 
-    .hero-inner { max-width: 760px; margin: 0 auto; position: relative; }
-
-    .hero-badge {
-      display: inline-block;
-      background: rgba(200,150,62,.18);
-      border: 1px solid rgba(200,150,62,.45);
-      color: var(--gold-lt);
-      font-size: .8rem;
-      font-weight: 600;
-      letter-spacing: .1em;
-      text-transform: uppercase;
-      padding: .35rem 1rem;
-      border-radius: 999px;
-      margin-bottom: 1.6rem;
+    .hero-grid {
+      position: relative;
+      display: grid;
+      grid-template-columns: minmax(0, 1.45fr) minmax(290px, 0.9fr);
+      gap: 1.5rem;
+      align-items: stretch;
     }
 
-    .hero-name {
-      font-size: clamp(2.4rem, 6vw, 3.8rem);
-      font-weight: 800;
-      letter-spacing: -.02em;
-      line-height: 1.1;
-      margin-bottom: 1rem;
-    }
-
-    .hero-tagline {
-      font-size: clamp(1rem, 2.5vw, 1.25rem);
-      color: #a8c2df;
-      font-weight: 400;
-      margin-bottom: 2.4rem;
-      letter-spacing: .02em;
-    }
-
-    .hero-divider {
-      width: 56px;
-      height: 3px;
-      background: var(--gold);
-      margin: 0 auto 2rem;
-      border-radius: 2px;
-    }
-
-    .hero-desc {
-      font-size: 1.05rem;
-      color: #c4d6ea;
-      max-width: 580px;
-      margin: 0 auto 2.8rem;
-    }
-
-    .btn-group { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
-
-    .btn {
+    .eyebrow {
       display: inline-flex;
       align-items: center;
-      gap: .5rem;
-      padding: .75rem 1.8rem;
+      gap: 0.6rem;
+      min-height: 38px;
+      padding: 0.4rem 0.8rem;
       border-radius: 999px;
-      font-size: .95rem;
-      font-weight: 600;
-      letter-spacing: .03em;
-      transition: transform var(--transition), box-shadow var(--transition), background var(--transition);
-    }
-
-    .btn-primary {
-      background: var(--gold);
-      color: var(--navy);
-    }
-
-    .btn-primary:hover {
-      background: var(--gold-lt);
-      color: var(--navy);
-      transform: translateY(-2px);
-      box-shadow: 0 6px 20px rgba(200,150,62,.4);
-    }
-
-    .btn-outline {
-      background: transparent;
-      color: var(--white);
-      border: 2px solid rgba(255,255,255,.35);
-    }
-
-    .btn-outline:hover {
-      border-color: var(--gold);
-      color: var(--gold-lt);
-      transform: translateY(-2px);
-    }
-
-    /* ── Sections ── */
-    section { padding: 5rem 2rem; }
-    section:nth-child(even) { background: var(--white); }
-
-    .container { max-width: 860px; margin: 0 auto; }
-
-    .section-label {
-      display: inline-block;
-      font-size: .75rem;
-      font-weight: 700;
-      letter-spacing: .12em;
+      border: 1px solid rgba(217, 164, 65, 0.32);
+      background: rgba(217, 164, 65, 0.08);
+      color: var(--accent-soft);
+      font-size: 0.76rem;
+      letter-spacing: 0.16em;
       text-transform: uppercase;
-      color: var(--gold);
-      margin-bottom: .6rem;
-    }
-
-    h2 {
-      font-size: clamp(1.6rem, 4vw, 2.1rem);
-      font-weight: 800;
-      color: var(--navy);
-      margin-bottom: .5rem;
-      letter-spacing: -.01em;
-    }
-
-    .section-rule {
-      width: 40px;
-      height: 3px;
-      background: var(--gold);
-      border-radius: 2px;
-      margin-bottom: 2rem;
-    }
-
-    /* ── About ── */
-    #about p {
-      font-size: 1.05rem;
-      color: #334155;
-      max-width: 680px;
-    }
-
-    /* ── Project card ── */
-    .project-card {
-      background: var(--offwhite);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 2rem 2.2rem;
-      box-shadow: var(--shadow);
-      transition: transform var(--transition), box-shadow var(--transition);
-    }
-
-    .project-card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 12px 36px rgba(11,31,58,.16);
-    }
-
-    .project-header {
-      display: flex;
-      align-items: flex-start;
-      justify-content: space-between;
-      gap: 1rem;
-      margin-bottom: .8rem;
-      flex-wrap: wrap;
-    }
-
-    .project-title {
-      font-size: 1.35rem;
       font-weight: 700;
-      color: var(--navy);
     }
 
-    .project-badge {
-      background: var(--navy);
-      color: var(--gold-lt);
-      font-size: .72rem;
+    h1,
+    h2,
+    h3 {
+      margin: 0;
+      font-family: "Fraunces", Georgia, serif;
       font-weight: 700;
-      letter-spacing: .08em;
-      text-transform: uppercase;
-      padding: .3rem .85rem;
-      border-radius: 999px;
-      white-space: nowrap;
+      line-height: 1.04;
     }
 
-    .project-desc {
+    h1 {
+      font-size: clamp(3rem, 8vw, 6rem);
+      margin-top: 1rem;
+      letter-spacing: -0.04em;
+      max-width: 11ch;
+    }
+
+    .hero-subtitle {
+      margin: 1rem 0 0;
+      max-width: 36rem;
+      font-size: clamp(1.1rem, 2.4vw, 1.5rem);
+      color: var(--paper);
+    }
+
+    .hero-copy {
+      max-width: 42rem;
+      margin: 1.3rem 0 0;
+      color: var(--muted);
       font-size: 1rem;
-      color: #3d526a;
-      margin-bottom: 1.4rem;
       line-height: 1.75;
     }
 
-    .project-tags {
+    .hero-actions,
+    .project-actions {
       display: flex;
-      gap: .55rem;
       flex-wrap: wrap;
-      margin-bottom: 1.5rem;
+      gap: 0.85rem;
+      margin-top: 1.7rem;
     }
 
-    .tag {
-      background: var(--navy);
-      color: #a8c2df;
-      font-size: .75rem;
-      font-weight: 600;
-      padding: .25rem .75rem;
-      border-radius: 999px;
-      letter-spacing: .04em;
-    }
-
+    .button,
     .project-link {
       display: inline-flex;
       align-items: center;
-      gap: .4rem;
-      font-size: .9rem;
-      font-weight: 600;
-      color: var(--gold);
-      border: 1.5px solid var(--gold);
+      justify-content: center;
+      min-height: 48px;
+      padding: 0.82rem 1.15rem;
       border-radius: 999px;
-      padding: .4rem 1.1rem;
-      transition: background var(--transition), color var(--transition);
+      border: 1px solid transparent;
+      font-size: 0.93rem;
+      font-weight: 700;
+      transition: transform 180ms ease, border-color 180ms ease, background 180ms ease, color 180ms ease;
     }
 
-    .project-link:hover {
-      background: var(--gold);
-      color: var(--navy);
+    .button:hover,
+    .button:focus-visible,
+    .project-link:hover,
+    .project-link:focus-visible {
+      transform: translateY(-2px);
     }
 
-    /* ── Skills ── */
-    .skills-grid {
+    .button.primary,
+    .project-link.primary {
+      background: var(--accent);
+      color: #1a1f26;
+    }
+
+    .button.secondary,
+    .project-link.secondary {
+      border-color: var(--line-strong);
+      background: rgba(255, 255, 255, 0.03);
+      color: var(--paper);
+    }
+
+    .hero-aside {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
       gap: 1rem;
     }
 
-    .skill-item {
-      background: var(--white);
-      border: 1px solid var(--border);
-      border-left: 4px solid var(--gold);
+    .hero-card {
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      padding: 1.2rem;
+      background: rgba(255, 255, 255, 0.05);
+    }
+
+    .hero-card-label,
+    .section-kicker,
+    .project-badge,
+    .mini-list-label,
+    .contact-label {
+      display: inline-block;
+      font-size: 0.76rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      font-weight: 700;
+    }
+
+    .hero-card-label {
+      color: var(--accent-soft);
+    }
+
+    .hero-card strong {
+      display: block;
+      margin-top: 0.7rem;
+      font-size: 1.12rem;
+      line-height: 1.45;
+    }
+
+    .hero-card p {
+      margin: 0.6rem 0 0;
+      color: var(--muted);
+      line-height: 1.65;
+      font-size: 0.95rem;
+    }
+
+    main {
+      padding: 0 0 4rem;
+    }
+
+    section {
+      padding: 1.2rem 0;
+    }
+
+    .section-header {
+      display: grid;
+      gap: 0.6rem;
+      margin-bottom: 1.15rem;
+    }
+
+    .section-kicker {
+      color: var(--accent-soft);
+    }
+
+    .section-header h2 {
+      font-size: clamp(2rem, 4vw, 3.35rem);
+      max-width: 14ch;
+    }
+
+    .section-header p {
+      margin: 0;
+      max-width: 44rem;
+      color: var(--muted);
+      line-height: 1.75;
+    }
+
+    .panel {
+      border: 1px solid var(--line);
       border-radius: var(--radius);
-      padding: .9rem 1.1rem;
-      font-size: .95rem;
-      font-weight: 600;
-      color: var(--navy);
-      display: flex;
+      background: rgba(9, 18, 30, 0.7);
+      box-shadow: 0 18px 50px rgba(0, 0, 0, 0.2);
+    }
+
+    .role-grid,
+    .focus-grid,
+    .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1rem;
+    }
+
+    .role-card,
+    .focus-card,
+    .contact-card {
+      padding: 1.25rem;
+    }
+
+    .role-card h3,
+    .focus-card h3,
+    .project-card h3 {
+      font-size: 1.35rem;
+      margin-bottom: 0.7rem;
+    }
+
+    .role-card p,
+    .focus-card p,
+    .contact-card p,
+    .project-card p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.75;
+    }
+
+    .project-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1rem;
+    }
+
+    .project-card {
+      position: relative;
+      overflow: hidden;
+      padding: 1.5rem;
+    }
+
+    .project-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.03), transparent);
+      pointer-events: none;
+    }
+
+    .project-badge {
+      color: var(--signal);
+    }
+
+    .project-card h3 {
+      margin-top: 0.7rem;
+      font-size: 1.8rem;
+    }
+
+    .mini-list {
+      display: grid;
+      gap: 0.55rem;
+      margin-top: 1rem;
+      padding-top: 1rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .mini-list-label {
+      color: var(--paper-soft);
+    }
+
+    .mini-list span {
+      color: var(--paper);
+      font-size: 0.95rem;
+    }
+
+    .wide-card {
+      margin-top: 1rem;
+      padding: 1.35rem;
+      display: grid;
+      grid-template-columns: minmax(0, 1.15fr) minmax(220px, 0.85fr);
+      gap: 1rem;
       align-items: center;
-      gap: .65rem;
-      box-shadow: 0 2px 8px rgba(11,31,58,.06);
-      transition: transform var(--transition), box-shadow var(--transition);
     }
 
-    .skill-item:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 6px 18px rgba(11,31,58,.12);
+    .wide-card h3 {
+      font-size: 1.3rem;
+      margin-bottom: 0.55rem;
     }
 
-    .skill-icon {
-      font-size: 1.1rem;
-      line-height: 1;
-    }
-
-    /* ── Links ── */
-    .links-grid {
+    .chip-row {
       display: flex;
-      gap: 1.2rem;
       flex-wrap: wrap;
+      gap: 0.7rem;
+      margin-top: 1rem;
     }
 
-    .link-card {
-      display: inline-flex;
-      align-items: center;
-      gap: .7rem;
-      background: var(--navy);
-      color: var(--white);
-      font-size: .95rem;
+    .chip {
+      min-height: 36px;
+      padding: 0.45rem 0.8rem;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      background: rgba(255, 255, 255, 0.05);
+      color: var(--paper);
+      font-size: 0.9rem;
       font-weight: 600;
-      padding: .85rem 1.6rem;
-      border-radius: var(--radius);
-      border: 2px solid transparent;
-      box-shadow: var(--shadow);
-      transition: border-color var(--transition), transform var(--transition), color var(--transition);
     }
 
-    .link-card:hover {
-      border-color: var(--gold);
-      color: var(--gold-lt);
-      transform: translateY(-3px);
+    .approach-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.2fr) minmax(280px, 0.8fr);
+      gap: 1rem;
     }
 
-    .link-card svg { flex-shrink: 0; }
+    .approach-card,
+    .interest-card {
+      padding: 1.35rem;
+    }
 
-    /* ── Footer ── */
+    .interest-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1rem;
+    }
+
+    .contact-card {
+      transition: transform 180ms ease, border-color 180ms ease;
+    }
+
+    .contact-card:hover,
+    .contact-card:focus-visible {
+      transform: translateY(-2px);
+      border-color: rgba(217, 164, 65, 0.35);
+    }
+
+    .contact-label {
+      color: var(--accent-soft);
+      margin-bottom: 0.5rem;
+    }
+
+    .contact-card strong {
+      display: block;
+      font-size: 1.05rem;
+      margin-bottom: 0.35rem;
+      color: var(--paper);
+    }
+
     footer {
-      background: var(--navy);
-      color: #7a95b0;
-      text-align: center;
-      padding: 2rem 2rem;
-      font-size: .88rem;
-      border-top: 2px solid var(--gold);
+      padding: 0 0 2.5rem;
     }
 
-    footer a { color: var(--gold); }
-    footer a:hover { color: var(--gold-lt); }
+    .footer-shell {
+      width: min(calc(100% - 2rem), var(--max));
+      margin: 0 auto;
+      padding-top: 1.25rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
 
-    /* ── Responsive ── */
-    @media (max-width: 600px) {
-      nav { padding: .65rem 1.2rem; }
-      .nav-brand { font-size: .9rem; }
-      .nav-links { gap: 1rem; }
-      section { padding: 3.5rem 1.2rem; }
-      #hero { padding: 5rem 1.2rem 4rem; }
+    .js .reveal {
+      opacity: 0;
+      transform: translateY(18px);
+      transition: opacity 540ms ease, transform 540ms ease;
+    }
+
+    .js .reveal.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (max-width: 980px) {
+      .hero-grid,
+      .project-grid,
+      .role-grid,
+      .focus-grid,
+      .contact-grid,
+      .approach-grid,
+      .interest-grid,
+      .wide-card {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 720px) {
+      .topbar-inner,
+      .footer-shell {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .hero {
+        padding-top: 4.4rem;
+      }
+
+      .hero-panel {
+        padding: 1.4rem;
+      }
+
+      .nav {
+        gap: 0.8rem;
+      }
+
+      h1 {
+        max-width: 100%;
+      }
     }
   </style>
 </head>
 <body>
-
-  <!-- Navigation -->
-  <nav aria-label="Site navigation">
-    <span class="nav-brand">Chris Posadas</span>
-    <ul class="nav-links">
-      <li><a href="#about">About</a></li>
-      <li><a href="#project">Project</a></li>
-      <li><a href="#skills">Skills</a></li>
-      <li><a href="#links">Contact</a></li>
-    </ul>
-  </nav>
-
-  <!-- Hero -->
-  <header id="hero">
-    <div class="hero-inner">
-      <div class="hero-badge">United States Marine Corps</div>
-      <h1 class="hero-name">Chris Posadas</h1>
-      <p class="hero-tagline">Marine Officer &nbsp;·&nbsp; Operations Research Analyst &nbsp;·&nbsp; Applied Statistics Builder</p>
-      <div class="hero-divider"></div>
-      <p class="hero-desc">
-        Building practical analytical tools that turn technical coursework and real decision problems into reusable, reproducible workflows.
-      </p>
-      <div class="btn-group">
-        <a href="#project" class="btn btn-primary">
-          <!-- arrow down icon -->
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
-          Featured Project
-        </a>
-        <a href="#links" class="btn btn-outline">
-          <!-- link icon -->
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
-          Connect
-        </a>
-      </div>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <a class="brand" href="#top">Chris Posadas</a>
+      <nav class="nav" aria-label="Primary">
+        <a href="#role">Role</a>
+        <a href="#projects">Projects</a>
+        <a href="#focus">Focus</a>
+        <a href="#connect">Connect</a>
+      </nav>
     </div>
   </header>
 
-  <!-- About -->
-  <section id="about">
-    <div class="container">
-      <span class="section-label">Background</span>
-      <h2>About Me</h2>
-      <div class="section-rule"></div>
-      <p>
-        I am a United States Marine Corps officer and operations research analyst with a background in defense and applied analytics. I graduated from the United States Military Academy and focus on building tools that are mathematically sound, reusable, and practical. My work emphasizes reproducible code, clear technical communication, and decision-support products that remain useful beyond a single assignment.
-      </p>
-    </div>
-  </section>
+  <div class="shell" id="top">
+    <section class="hero reveal" aria-labelledby="hero-title">
+      <div class="hero-panel">
+        <div class="hero-grid">
+          <div>
+            <span class="eyebrow">Public GitHub Portfolio</span>
+            <h1 id="hero-title">Practical tools for real decisions.</h1>
+            <p class="hero-subtitle">
+              Marine Corps officer, infantry officer, and operations research analyst building reusable tools in Python, R, and Excel.
+            </p>
+            <p class="hero-copy">
+              My projects focus on decision support, statistical tooling, workflow automation, and clean technical outputs.
+              I care about code that is explainable, auditable, and useful after the assignment is over.
+            </p>
+            <div class="hero-actions">
+              <a class="button primary" href="#projects">View repositories</a>
+              <a
+                class="button secondary"
+                href="https://github.com/christopherposadasp-ctrl"
+                target="_blank"
+                rel="noreferrer"
+              >
+                GitHub profile
+              </a>
+            </div>
+          </div>
 
-  <!-- Featured Project -->
-  <section id="project">
-    <div class="container">
-      <span class="section-label">Work</span>
-      <h2>Featured Project</h2>
-      <div class="section-rule"></div>
-      <div class="project-card">
-        <div class="project-header">
-          <h3 class="project-title">StatsRPackage</h3>
-          <span class="project-badge">R Package</span>
+          <aside class="hero-aside" aria-label="Summary cards">
+            <div class="hero-card">
+              <span class="hero-card-label">Current role</span>
+              <strong>United States Marine Corps officer with an operations research focus.</strong>
+              <p>
+                Background in infantry leadership, defense analytics, and structured problem solving under real constraints.
+              </p>
+            </div>
+            <div class="hero-card">
+              <span class="hero-card-label">Education</span>
+              <strong>United States Military Academy</strong>
+              <p>B.S. in Defense and Strategic Studies, with long-term interest in teaching and educational tooling.</p>
+            </div>
+            <div class="hero-card">
+              <span class="hero-card-label">Working style</span>
+              <strong>Explicit assumptions. Reusable workflows. Clean outputs.</strong>
+              <p>
+                I prefer templates, checklists, maintainable scripts, and source-of-truth logic over one-off solutions.
+              </p>
+            </div>
+          </aside>
         </div>
-        <p class="project-desc">
-          An R package built to support graduate statistics work with reusable functions for confidence intervals, hypothesis tests, power calculations, sample-size planning, and related descriptive methods. The project emphasizes correctness, consistent workflows, testing, and documentation — reflecting an interest in making analytical methods both rigorous and usable.
-        </p>
-        <div class="project-tags">
-          <span class="tag">R</span>
-          <span class="tag">Statistical Inference</span>
-          <span class="tag">Hypothesis Testing</span>
-          <span class="tag">Power Analysis</span>
-          <span class="tag">Reproducible Research</span>
+      </div>
+    </section>
+
+    <main>
+      <section id="role" class="reveal" aria-labelledby="role-title">
+        <div class="section-header">
+          <span class="section-kicker">Role</span>
+          <h2 id="role-title">A portfolio built around leadership, analysis, and implementation.</h2>
+          <p>
+            This site is meant to show both technical range and project discipline.
+            The work here lives at the intersection of operations research, applied statistics, spreadsheet systems, and software that helps people plan better.
+          </p>
         </div>
-        <a href="https://github.com/christopherposadasp-ctrl/StatsRPackage" class="project-link" target="_blank" rel="noopener noreferrer">
-          <!-- GitHub icon -->
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
-          View on GitHub
-        </a>
-      </div>
-    </div>
-  </section>
 
-  <!-- Skills -->
-  <section id="skills">
-    <div class="container">
-      <span class="section-label">Capabilities</span>
-      <h2>Skills</h2>
-      <div class="section-rule"></div>
-      <div class="skills-grid">
-        <div class="skill-item"><span class="skill-icon">📊</span> R</div>
-        <div class="skill-item"><span class="skill-icon">📐</span> Statistical Inference</div>
-        <div class="skill-item"><span class="skill-icon">🔬</span> Hypothesis Testing</div>
-        <div class="skill-item"><span class="skill-icon">🧮</span> Power &amp; Sample-Size Analysis</div>
-        <div class="skill-item"><span class="skill-icon">🗺️</span> Operations Research</div>
-        <div class="skill-item"><span class="skill-icon">🔁</span> Reproducible Workflows</div>
-        <div class="skill-item"><span class="skill-icon">🐙</span> Git &amp; GitHub</div>
-        <div class="skill-item"><span class="skill-icon">🎯</span> Decision Support</div>
-      </div>
-    </div>
-  </section>
+        <div class="role-grid">
+          <article class="panel role-card">
+            <h3>What I do now</h3>
+            <p>
+              I am a Marine Corps officer and operations research analyst based in Monterey, California.
+              My background includes infantry experience, defense-oriented problem solving, and building tools that support planning, structure, and repeatable execution.
+            </p>
+          </article>
+          <article class="panel role-card">
+            <h3>Where I am headed</h3>
+            <p>
+              Long term, I want to teach.
+              That is part of why I value projects that are not just correct, but explainable.
+              Good tools should help people learn faster, reduce avoidable friction, and make decisions that can be defended.
+            </p>
+          </article>
+        </div>
+      </section>
 
-  <!-- Links -->
-  <section id="links">
-    <div class="container">
-      <span class="section-label">Connect</span>
-      <h2>Links</h2>
-      <div class="section-rule"></div>
-      <div class="links-grid">
-        <a href="https://github.com/christopherposadasp-ctrl" class="link-card" target="_blank" rel="noopener noreferrer">
-          <!-- GitHub icon -->
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
-          GitHub
-        </a>
-        <a href="https://www.linkedin.com/in/christopher-posadas-0bb31050" class="link-card" target="_blank" rel="noopener noreferrer">
-          <!-- LinkedIn icon -->
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
-          LinkedIn
-        </a>
-      </div>
-    </div>
-  </section>
+      <section id="projects" class="reveal" aria-labelledby="projects-title">
+        <div class="section-header">
+          <span class="section-kicker">Projects</span>
+          <h2 id="projects-title">Featured repositories and live work.</h2>
+          <p>
+            For this portfolio, I wanted direct evidence of actual repository work.
+            The cards below link to public GitHub repos and live outputs rather than generic placeholders.
+          </p>
+        </div>
 
-  <!-- Footer -->
+        <div class="project-grid">
+          <article class="panel project-card">
+            <span class="project-badge">Featured repo</span>
+            <h3>StatsRPackage</h3>
+            <p>
+              An R package focused on introductory and applied statistical inference.
+              It emphasizes reusable functions, mathematical correctness, regression-tested behavior, and documentation that supports coursework and practical analysis.
+            </p>
+            <div class="mini-list">
+              <span class="mini-list-label">Highlights</span>
+              <span>Confidence intervals, hypothesis tests, power analysis, and sample-size planning</span>
+              <span>CI, linting, coverage, pkgdown docs, and versioned release workflow</span>
+              <span>Built to be reusable beyond a single homework or exam</span>
+            </div>
+            <div class="project-actions">
+              <a
+                class="project-link primary"
+                href="https://github.com/christopherposadasp-ctrl/StatsRPackage"
+                target="_blank"
+                rel="noreferrer"
+              >
+                View repository
+              </a>
+              <a
+                class="project-link secondary"
+                href="https://christopherposadasp-ctrl.github.io/StatsRPackage/"
+                target="_blank"
+                rel="noreferrer"
+              >
+                Live docs
+              </a>
+            </div>
+          </article>
+
+          <article class="panel project-card">
+            <span class="project-badge">Portfolio repo</span>
+            <h3>GitHub Portfolio Site</h3>
+            <p>
+              The source code for this public portfolio site.
+              Built as a GitHub Pages project with custom HTML and CSS to present my background, technical focus, and repositories in a cleaner format than a default profile page.
+            </p>
+            <div class="mini-list">
+              <span class="mini-list-label">Highlights</span>
+              <span>Public GitHub Pages deployment</span>
+              <span>Single-page portfolio with responsive custom styling</span>
+              <span>Designed to present projects, workflow themes, and professional background clearly</span>
+            </div>
+            <div class="project-actions">
+              <a
+                class="project-link primary"
+                href="https://christopherposadasp-ctrl.github.io/"
+                target="_blank"
+                rel="noreferrer"
+              >
+                Live site
+              </a>
+              <a
+                class="project-link secondary"
+                href="https://github.com/christopherposadasp-ctrl/christopherposadasp-ctrl.github.io"
+                target="_blank"
+                rel="noreferrer"
+              >
+                Source repository
+              </a>
+            </div>
+          </article>
+        </div>
+
+        <article class="panel wide-card">
+          <div>
+            <h3>More public repositories are linked from my GitHub profile.</h3>
+            <p>
+              This portfolio focuses on the strongest public repository I currently have and the portfolio source itself.
+              As more planning, automation, and workflow projects are published, this section can expand into a broader project index.
+            </p>
+          </div>
+          <div class="project-actions" style="margin-top: 0;">
+            <a
+              class="project-link primary"
+              href="https://github.com/christopherposadasp-ctrl?tab=repositories"
+              target="_blank"
+              rel="noreferrer"
+            >
+              Browse repositories
+            </a>
+          </div>
+        </article>
+      </section>
+
+      <section id="focus" class="reveal" aria-labelledby="focus-title">
+        <div class="section-header">
+          <span class="section-kicker">Focus</span>
+          <h2 id="focus-title">What I work on most.</h2>
+          <p>
+            My strongest technical themes are the ones that help make complex work more structured, reusable, and easier to explain.
+          </p>
+        </div>
+
+        <div class="focus-grid">
+          <article class="panel focus-card">
+            <h3>Python and workflow automation</h3>
+            <p>
+              I use Python for scripting, file generation, data wrangling, workbook manipulation, and turning manual steps into repeatable workflows.
+            </p>
+          </article>
+          <article class="panel focus-card">
+            <h3>R and statistical tooling</h3>
+            <p>
+              I build reusable statistical helpers with attention to notation, expected formulas, output quality, and regression-tested behavior.
+            </p>
+          </article>
+          <article class="panel focus-card">
+            <h3>Excel and spreadsheet systems</h3>
+            <p>
+              I work comfortably in spreadsheet-driven environments and care about human-in-the-loop logic, reviewable derived states, and respecting live data.
+            </p>
+          </article>
+          <article class="panel focus-card">
+            <h3>Scheduling and decision support</h3>
+            <p>
+              I am especially interested in planning systems, constraint-aware workflows, structured outputs, and tools that help people make defensible decisions quickly.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section class="reveal" aria-labelledby="approach-title">
+        <div class="section-header">
+          <span class="section-kicker">Approach</span>
+          <h2 id="approach-title">How I like to build.</h2>
+        </div>
+
+        <div class="approach-grid">
+          <article class="panel approach-card">
+            <p>
+              I translate messy requirements into usable systems.
+              That usually means combining code, spreadsheets, and documentation instead of pretending one tool solves everything.
+              I value reproducibility, explicit assumptions, good naming, source-of-truth discipline, and outputs another person can understand without guessing.
+            </p>
+            <div class="chip-row" aria-label="Approach tags">
+              <span class="chip">Reproducible workflows</span>
+              <span class="chip">Auditable logic</span>
+              <span class="chip">Clean documentation</span>
+              <span class="chip">Structured outputs</span>
+              <span class="chip">Maintainable scripts</span>
+              <span class="chip">Practical automation</span>
+            </div>
+          </article>
+
+          <article class="panel approach-card">
+            <h3>AI-assisted development</h3>
+            <p>
+              I also use VS Code and Codex as force multipliers for structured coding, documentation, and reviewable workflow work.
+              The goal is not novelty.
+              The goal is faster, cleaner execution with human validation and clear source material.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section class="reveal" aria-labelledby="interests-title">
+        <div class="section-header">
+          <span class="section-kicker">Interests</span>
+          <h2 id="interests-title">Technical seriousness with a human side.</h2>
+          <p>
+            I am most energized by projects where leadership, analysis, and implementation meet.
+            Outside of professional work, I also spend substantial time on tabletop roleplaying game worldbuilding and campaign support.
+          </p>
+        </div>
+
+        <div class="interest-grid">
+          <article class="panel interest-card">
+            <h3>Professional interests</h3>
+            <div class="chip-row" aria-label="Professional interests">
+              <span class="chip">Operations research</span>
+              <span class="chip">Decision support</span>
+              <span class="chip">Statistics education</span>
+              <span class="chip">Workflow automation</span>
+              <span class="chip">Planning systems</span>
+              <span class="chip">Technical writing</span>
+            </div>
+          </article>
+          <article class="panel interest-card">
+            <h3>Personal interests</h3>
+            <p>
+              Worldbuilding is a useful counterbalance to analytical work.
+              It uses the same systems thinking in a different form: rules, factions, settings, continuity, and creative iteration over time.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section id="connect" class="reveal" aria-labelledby="connect-title">
+        <div class="section-header">
+          <span class="section-kicker">Connect</span>
+          <h2 id="connect-title">Find my work and profile.</h2>
+          <p>
+            The easiest way to follow current work is through GitHub.
+            LinkedIn is the best place for broader professional background.
+          </p>
+        </div>
+
+        <div class="contact-grid">
+          <a
+            class="panel contact-card"
+            href="https://github.com/christopherposadasp-ctrl"
+            target="_blank"
+            rel="noreferrer"
+          >
+            <span class="contact-label">GitHub</span>
+            <strong>christopherposadasp-ctrl</strong>
+            <p>Source repos, public portfolio work, and the fastest path to currently published projects.</p>
+          </a>
+          <a
+            class="panel contact-card"
+            href="https://www.linkedin.com/in/christopher-posadas-0bb31050"
+            target="_blank"
+            rel="noreferrer"
+          >
+            <span class="contact-label">LinkedIn</span>
+            <strong>Christopher Posadas</strong>
+            <p>Professional background, education, and profile details beyond the code itself.</p>
+          </a>
+        </div>
+      </section>
+    </main>
+  </div>
+
   <footer>
-    <p>
-      © 2025 Chris Posadas &nbsp;·&nbsp;
-      <a href="https://github.com/christopherposadasp-ctrl/christopherposadasp-ctrl.github.io" target="_blank" rel="noopener noreferrer">Source on GitHub</a>
-    </p>
+    <div class="footer-shell">
+      <span>Chris Posadas | Marine Corps officer | Infantry officer | Operations Research analyst</span>
+      <span>
+        <span id="year">2026</span> GitHub Portfolio
+      </span>
+    </div>
   </footer>
 
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("is-visible");
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.14 }
+    );
+
+    document.querySelectorAll(".reveal").forEach((element) => {
+      observer.observe(element);
+    });
+  </script>
 </body>
 </html>
