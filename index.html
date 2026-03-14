@@ -81,6 +81,11 @@
       text-decoration: none;
     }
 
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
     .shell {
       width: min(calc(100% - 2rem), var(--max));
       margin: 0 auto;
@@ -373,6 +378,13 @@
       gap: 1rem;
     }
 
+    .visual-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+
     .project-card {
       position: relative;
       overflow: hidden;
@@ -451,6 +463,34 @@
       gap: 1rem;
     }
 
+    .visual-card {
+      overflow: hidden;
+      padding: 0;
+    }
+
+    .visual-card img {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      object-fit: cover;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      background: rgba(255, 255, 255, 0.03);
+    }
+
+    .visual-copy {
+      padding: 1rem 1.15rem 1.15rem;
+    }
+
+    .visual-copy h3 {
+      font-size: 1.2rem;
+      margin-bottom: 0.45rem;
+    }
+
+    .visual-copy p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.65;
+    }
+
     .approach-card,
     .interest-card {
       padding: 1.35rem;
@@ -514,6 +554,7 @@
     @media (max-width: 980px) {
       .hero-grid,
       .project-grid,
+      .visual-grid,
       .role-grid,
       .focus-grid,
       .contact-grid,
@@ -570,7 +611,7 @@
             <span class="eyebrow">Public GitHub Portfolio</span>
             <h1 id="hero-title">Practical tools for real decisions.</h1>
             <p class="hero-subtitle">
-              Marine Corps officer, infantry officer, and operations research analyst building reusable tools in Python, R, and Excel.
+              Marine Corps Officer, Infantryman, Operations and Tactics Instructor, pursuing Education in Operations Research.
             </p>
             <p class="hero-copy">
               My projects focus on decision support, statistical tooling, workflow automation, and clean technical outputs.
@@ -718,6 +759,27 @@
               >
                 Source repository
               </a>
+            </div>
+          </article>
+        </div>
+
+        <div class="visual-grid" aria-label="Project visuals">
+          <article class="panel visual-card">
+            <img src="assets/statsrpackage-card.png" alt="StatsRPackage repository preview card">
+            <div class="visual-copy">
+              <h3>Repository preview</h3>
+              <p>
+                A public-facing project image that reinforces the package as a real, published repository with its own documentation and release surface.
+              </p>
+            </div>
+          </article>
+          <article class="panel visual-card">
+            <img src="assets/statsr-cheatsheet.svg" alt="Stylized StatsRPackage code sample graphic">
+            <div class="visual-copy">
+              <h3>Code-style sample</h3>
+              <p>
+                A visual built from the package workflow itself, showing the kind of inference helpers and cheat-sheet style usage the project was made to support.
+              </p>
             </div>
           </article>
         </div>
